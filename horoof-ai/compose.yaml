@@ -1,0 +1,15 @@
+services:
+  horoof:
+    build: .
+    ports:
+      - "3000:3000"
+    environment:
+      OCR_ENABLED: "1"
+      OCR_LANGUAGES: "ara+fra+eng"
+      OPENAI_API_KEY: ${OPENAI_API_KEY:-}
+      OPENAI_MODEL: ${OPENAI_MODEL:-gpt-4o-mini}
+    volumes:
+      - horoof-data:/data
+    restart: unless-stopped
+volumes:
+  horoof-data:
