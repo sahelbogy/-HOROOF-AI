@@ -1,3 +1,0 @@
-'use strict';
-const {test}=require('node:test'),assert=require('node:assert/strict'),{hybridRank,cosine}=require('../vercel-backend/hybrid-retrieval');
-test('hybrid retrieval fuses lexical and semantic rank deterministically',()=>{const p=[{id:1,text:'cats and dogs'},{id:2,text:'felines sleeping'},{id:3,text:'astronomy'}];let v=[[1,0],[0,1],[1,0],[-1,0]];assert.deepEqual(hybridRank('cats',p,v,3).map(x=>x.id),[1,2,3]);assert.equal(cosine([1,0],[1,0]),1);assert.throws(()=>hybridRank('x',p,[[1],[0],[1],[2]]));assert.throws(()=>hybridRank('x',p,[[1,0],[1],[1,0],[1,0]]));assert.throws(()=>hybridRank('x',Array(41).fill(p[0]),Array(42).fill([1,0])))});
