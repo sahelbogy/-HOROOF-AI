@@ -1,0 +1,3 @@
+'use strict';
+const {test}=require('node:test'),assert=require('node:assert/strict'),seed=require('../lib/french-seed'),{alphabet,canonicalLetter,startsWithLetter}=require('../lib/alphabet');
+test('French starter has 26 distinct letters with valid answers',()=>{assert.equal(seed.length,26);assert.deepEqual(seed.map(x=>x[0]),alphabet('fr'));for(const [letter,question,answer] of seed){assert.ok(question.length>5);assert.ok(startsWithLetter(answer,letter),letter)}assert.equal(canonicalLetter('z'),'Z');assert.equal(startsWithLetter('Éléphant','E'),true);assert.equal(startsWithLetter('bateau','A'),false);assert.ok(alphabet('ar').length>=25)});
